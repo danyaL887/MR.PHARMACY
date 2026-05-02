@@ -1,0 +1,1213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MR.PHARMACY - Pakistan's Best Online Pharmacy & Medical Store</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💊</text></svg>">
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
+    </script>
+    <style>
+        :root {
+            --primary: #0a3d62;
+            --primary-light: #1a5f8a;
+            --accent: #1a73e8;
+            --accent-light: #e8f0fe;
+            --white: #ffffff;
+            --gray-50: #f8f9fa;
+            --gray-100: #f1f3f4;
+            --gray-200: #e8eaed;
+            --gray-300: #dadce0;
+            --gray-500: #5f6368;
+            --gray-700: #3c4043;
+            --gray-900: #202124;
+            --red: #d93025;
+            --green: #0d904f;
+            --orange: #ff6d00;
+            --gold: #ffd700;
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.15);
+            --radius: 14px;
+            --radius-sm: 10px;
+            --transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+            --font: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font);
+            background: #f0f4f8;
+            color: var(--gray-900);
+            line-height: 1.5;
+            min-height: 100vh;
+        }
+
+        /* Top bar */
+        .top-bar {
+            background: var(--primary);
+            color: #fff;
+            padding: 8px 20px;
+            font-size: 0.8rem;
+            text-align: center;
+            letter-spacing: 0.3px;
+            font-weight: 500;
+        }
+        .top-bar span {
+            font-weight: 700;
+            color: var(--gold);
+        }
+
+        /* Header */
+        .header {
+            background: var(--white);
+            border-bottom: 1px solid var(--gray-200);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow-sm);
+        }
+        .header-inner {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            padding: 12px 20px;
+            gap: 18px;
+            flex-wrap: wrap;
+        }
+        .logo {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--primary);
+            letter-spacing: -1px;
+            cursor: pointer;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .logo span {
+            color: var(--accent);
+        }
+        .search-wrap {
+            flex: 1;
+            min-width: 260px;
+            position: relative;
+        }
+        .search-wrap input {
+            width: 100%;
+            padding: 12px 48px 12px 18px;
+            border: 2px solid var(--gray-200);
+            border-radius: 30px;
+            font-size: 0.95rem;
+            outline: none;
+            transition: var(--transition);
+            background: var(--gray-50);
+        }
+        .search-wrap input:focus {
+            border-color: var(--accent);
+            background: #fff;
+            box-shadow: 0 0 0 4px rgba(26, 115, 232, 0.08);
+        }
+        .search-wrap button {
+            position: absolute;
+            right: 6px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--accent);
+            color: #fff;
+            border: none;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+        .search-wrap button:hover {
+            background: #1557b0;
+        }
+        .header-actions {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .btn {
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            border: none;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            white-space: nowrap;
+            letter-spacing: 0.3px;
+        }
+        .btn-outline {
+            background: #fff;
+            border: 2px solid var(--gray-300);
+            color: var(--gray-700);
+        }
+        .btn-outline:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            background: var(--accent-light);
+        }
+        .btn-primary {
+            background: var(--accent);
+            color: #fff;
+        }
+        .btn-primary:hover {
+            background: #1557b0;
+            box-shadow: var(--shadow-md);
+            transform: translateY(-1px);
+        }
+        .btn-whatsapp {
+            background: #25d366;
+            color: #fff;
+        }
+        .btn-whatsapp:hover {
+            background: #1fb855;
+            box-shadow: var(--shadow-md);
+        }
+        .btn-admin {
+            background: var(--orange);
+            color: #fff;
+            font-size: 0.8rem;
+            padding: 8px 16px;
+        }
+        .btn-admin:hover {
+            background: #e65100;
+        }
+
+        /* Navigation */
+        .nav-bar {
+            background: #fff;
+            border-bottom: 1px solid var(--gray-200);
+            overflow-x: auto;
+            white-space: nowrap;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+        .nav-bar::-webkit-scrollbar {
+            display: none;
+        }
+        .nav-inner {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: flex;
+            gap: 2px;
+            padding: 8px 20px;
+        }
+        .nav-item {
+            padding: 10px 18px;
+            cursor: pointer;
+            border-radius: 24px;
+            font-weight: 500;
+            font-size: 0.88rem;
+            transition: var(--transition);
+            color: var(--gray-700);
+            position: relative;
+            white-space: nowrap;
+        }
+        .nav-item:hover,
+        .nav-item.active {
+            background: var(--accent-light);
+            color: var(--accent);
+            font-weight: 600;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #fff;
+            min-width: 210px;
+            box-shadow: var(--shadow-lg);
+            border-radius: var(--radius);
+            z-index: 999;
+            overflow: hidden;
+            border: 1px solid var(--gray-200);
+        }
+        .nav-item:hover .dropdown-content {
+            display: block;
+        }
+        .dropdown-content a {
+            display: block;
+            padding: 10px 18px;
+            color: var(--gray-700);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: var(--transition);
+        }
+        .dropdown-content a:hover {
+            background: var(--accent-light);
+            color: var(--accent);
+        }
+
+        /* Main */
+        .main-content {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 28px 0 18px;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .section-title::after {
+            content: '';
+            flex: 1;
+            height: 2px;
+            background: var(--gray-200);
+            border-radius: 1px;
+        }
+        .view-all {
+            font-size: 0.85rem;
+            color: var(--accent);
+            cursor: pointer;
+            font-weight: 600;
+            white-space: nowrap;
+            transition: var(--transition);
+        }
+        .view-all:hover {
+            text-decoration: underline;
+        }
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+            gap: 18px;
+        }
+        .product-card {
+            background: #fff;
+            border-radius: var(--radius);
+            padding: 20px 16px;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 1px solid var(--gray-200);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .product-card:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-6px);
+            border-color: var(--accent);
+        }
+        .product-card .badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: var(--red);
+            color: #fff;
+            font-size: 0.7rem;
+            padding: 4px 10px;
+            border-radius: 14px;
+            font-weight: 700;
+            letter-spacing: 0.3px;
+        }
+        .product-card .icon {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+        }
+        .product-card h4 {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin: 8px 0;
+            color: var(--gray-900);
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            min-height: 40px;
+        }
+        .product-card .price {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--green);
+            margin: 4px 0;
+        }
+        .product-card .old-price {
+            font-size: 0.8rem;
+            color: #999;
+            text-decoration: line-through;
+            margin-left: 6px;
+        }
+        .product-card .discount {
+            font-size: 0.75rem;
+            color: var(--red);
+            font-weight: 600;
+            margin-top: 4px;
+        }
+
+        .banner {
+            background: linear-gradient(135deg, #0a3d62, #1a5f8a);
+            color: #fff;
+            padding: 20px 28px;
+            border-radius: var(--radius);
+            margin: 20px 0;
+            text-align: center;
+            font-weight: 500;
+            font-size: 1rem;
+            letter-spacing: 0.3px;
+            box-shadow: var(--shadow-md);
+        }
+        .banner span {
+            color: var(--gold);
+            font-weight: 700;
+        }
+
+        .care-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 14px;
+            margin: 20px 0;
+        }
+        .care-card {
+            background: #fff;
+            border-radius: var(--radius);
+            padding: 20px 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 1px solid var(--gray-200);
+            font-weight: 500;
+            font-size: 0.9rem;
+            box-shadow: var(--shadow-sm);
+        }
+        .care-card:hover {
+            background: var(--accent-light);
+            border-color: var(--accent);
+            color: var(--accent);
+            transform: translateY(-3px);
+        }
+        .care-card .icon {
+            font-size: 2rem;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .brand-grid {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        .brand-chip {
+            background: #fff;
+            border: 1px solid var(--gray-200);
+            padding: 10px 22px;
+            border-radius: 24px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.85rem;
+            box-shadow: var(--shadow-sm);
+        }
+        .brand-chip:hover {
+            background: var(--accent-light);
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        /* Search Results */
+        .search-results-container {
+            display: none;
+            margin: 20px 0;
+        }
+        .search-results-container.active {
+            display: block;
+        }
+        .search-results-container .product-grid {
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        }
+
+        /* Modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.55);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .modal-overlay.active {
+            display: flex;
+        }
+        .modal {
+            background: #fff;
+            border-radius: var(--radius);
+            padding: 32px;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            max-height: 90vh;
+            overflow-y: auto;
+            animation: slideUp 0.3s ease;
+        }
+        @keyframes slideUp {
+            from {
+                transform: translateY(40px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        .modal .close-btn {
+            position: absolute;
+            top: 12px;
+            right: 18px;
+            background: none;
+            border: none;
+            font-size: 1.6rem;
+            cursor: pointer;
+            color: var(--gray-500);
+            transition: var(--transition);
+        }
+        .modal .close-btn:hover {
+            color: var(--red);
+        }
+        .modal h3 {
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+            color: var(--primary);
+        }
+        .modal .form-group {
+            margin-bottom: 16px;
+        }
+        .modal .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 6px;
+            font-size: 0.85rem;
+            color: var(--gray-700);
+        }
+        .modal .form-group input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid var(--gray-200);
+            border-radius: var(--radius-sm);
+            font-size: 0.95rem;
+            outline: none;
+            transition: var(--transition);
+        }
+        .modal .form-group input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 4px rgba(26, 115, 232, 0.06);
+        }
+        .modal .btn-submit {
+            width: 100%;
+            padding: 14px;
+            font-size: 1rem;
+            font-weight: 700;
+            background: var(--green);
+            color: #fff;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 10px;
+            letter-spacing: 0.3px;
+        }
+        .modal .btn-submit:hover {
+            background: #0b7a3e;
+            box-shadow: var(--shadow-md);
+        }
+        .success-msg {
+            text-align: center;
+            color: var(--green);
+            font-weight: 700;
+            font-size: 1.1rem;
+            padding: 20px;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+        }
+        .success-msg.show {
+            display: flex;
+        }
+
+        /* Admin */
+        .admin-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 3000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .admin-overlay.active {
+            display: flex;
+        }
+        .admin-panel {
+            background: #fff;
+            border-radius: var(--radius);
+            padding: 30px;
+            max-width: 750px;
+            width: 100%;
+            box-shadow: var(--shadow-lg);
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+        }
+        .admin-panel h2 {
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        .admin-panel .close-btn {
+            position: absolute;
+            top: 14px;
+            right: 18px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--gray-500);
+        }
+        .admin-panel .close-btn:hover {
+            color: var(--red);
+        }
+        .tab-btns {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 22px;
+            flex-wrap: wrap;
+        }
+        .tab-btn {
+            padding: 10px 22px;
+            border-radius: 30px;
+            cursor: pointer;
+            border: 2px solid var(--gray-200);
+            background: #fff;
+            font-weight: 600;
+            transition: var(--transition);
+            font-size: 0.85rem;
+        }
+        .tab-btn.active {
+            background: var(--accent);
+            color: #fff;
+            border-color: var(--accent);
+        }
+        .admin-section {
+            display: none;
+        }
+        .admin-section.active {
+            display: block;
+        }
+        .admin-panel .form-group {
+            margin-bottom: 14px;
+        }
+        .admin-panel .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 5px;
+            font-size: 0.85rem;
+        }
+        .admin-panel .form-group input,
+        .admin-panel .form-group select,
+        .admin-panel .form-group textarea {
+            width: 100%;
+            padding: 11px 14px;
+            border: 2px solid var(--gray-200);
+            border-radius: var(--radius-sm);
+            font-size: 0.9rem;
+            outline: none;
+            font-family: var(--font);
+        }
+        .admin-panel table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.8rem;
+            margin-top: 14px;
+        }
+        .admin-panel table th,
+        .admin-panel table td {
+            border: 1px solid var(--gray-200);
+            padding: 10px;
+            text-align: left;
+        }
+        .admin-panel table th {
+            background: var(--accent-light);
+            font-weight: 600;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--primary);
+            color: #ccc;
+            text-align: center;
+            padding: 24px;
+            font-size: 0.85rem;
+            margin-top: 40px;
+            line-height: 1.6;
+        }
+        .footer strong {
+            color: #fff;
+        }
+
+        /* Toast */
+        .toast {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            background: #333;
+            color: #fff;
+            padding: 14px 24px;
+            border-radius: 30px;
+            font-weight: 600;
+            z-index: 9999;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.35s ease;
+            pointer-events: none;
+            box-shadow: var(--shadow-lg);
+            font-size: 0.9rem;
+        }
+        .toast.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .toast.success {
+            background: var(--green);
+        }
+        .toast.error {
+            background: var(--red);
+        }
+
+        @media (max-width: 768px) {
+            .header-inner {
+                flex-direction: column;
+            }
+            .product-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 12px;
+            }
+            .modal {
+                padding: 18px;
+                max-width: 95vw;
+            }
+            .admin-panel {
+                padding: 16px;
+                max-width: 95vw;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        🚚 Free Delivery on Orders Above <span>Rs. 2,000</span> | 📞 Call/WhatsApp: <span>0346-8663920</span> | 🌐 <span>https://danyal887.github.io/Mr-pizza/</span>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-inner">
+            <div class="logo" onclick="location.reload()">💊 MR.PHARMACY</div>
+            <div class="search-wrap">
+                <input type="text" id="searchInput" placeholder="Search medicines, supplements..." onkeyup="handleSearch()">
+                <button onclick="handleSearch()">🔍</button>
+            </div>
+            <div class="header-actions">
+                <button class="btn btn-outline" onclick="document.getElementById('searchInput').focus()">📦 Instant Order</button>
+                <button class="btn btn-whatsapp" onclick="window.open('https://wa.me/923468663920','_blank')">💬 WhatsApp</button>
+                <button class="btn btn-admin" onclick="openAdminLogin()">🔐 Admin</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="nav-bar">
+        <div class="nav-inner">
+            <div class="nav-item active">💊 Medicine ▾
+                <div class="dropdown-content">
+                    <a href="#" onclick="filterProducts('Pain Relief')">Pain Relief</a>
+                    <a href="#" onclick="filterProducts('Antibiotics')">Antibiotics</a>
+                    <a href="#" onclick="filterProducts('Diabetes')">Diabetes</a>
+                    <a href="#" onclick="filterProducts('Blood Pressure')">Blood Pressure</a>
+                </div>
+            </div>
+            <div class="nav-item">👶 Baby & Mother Care ▾
+                <div class="dropdown-content">
+                    <a href="#" onclick="filterProducts('Baby Milk')">Baby Milk</a>
+                    <a href="#" onclick="filterProducts('Diapers')">Diapers</a>
+                </div>
+            </div>
+            <div class="nav-item">💪 Nutritions</div>
+            <div class="nav-item">🍎 Foods</div>
+            <div class="nav-item">🧴 Personal Care</div>
+            <div class="nav-item">🏥 OTC & Health</div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content" id="mainContent">
+        <div class="banner">
+            💊 <span>Ponstan</span> (MEFENAMIC ACID) ORAL SUSPENSION — Available Across Pakistan | Report adverse events: <span>drug.safety@luckycore.com</span>
+        </div>
+
+        <!-- Normal Sections (hidden when searching) -->
+        <div id="normalSections">
+            <div class="section-title">🔥 Top Selling <span class="view-all" onclick="scrollToSection('deals-section')">VIEW ALL →</span></div>
+            <div class="product-grid" id="topSellingGrid"></div>
+
+            <div class="section-title" id="deals-section">🎉 Deals & Discounts</div>
+            <div class="product-grid" id="dealsGrid"></div>
+
+            <div class="section-title">⭐ Featured Products</div>
+            <div class="product-grid" id="featuredGrid"></div>
+
+            <div class="section-title">🏥 Care By Condition</div>
+            <div class="care-grid">
+                <div class="care-card" onclick="filterProducts('Hair Fall')"><span class="icon">💇</span>Hair Fall</div>
+                <div class="care-card" onclick="filterProducts('Cough & Cold')"><span class="icon">🤧</span>Cough & Cold</div>
+                <div class="care-card" onclick="filterProducts('Bones & Joints')"><span class="icon">🦴</span>Bones & Joints</div>
+                <div class="care-card" onclick="filterProducts('Acne')"><span class="icon">🔴</span>Acne</div>
+                <div class="care-card" onclick="filterProducts('Pain & Body Aches')"><span class="icon">💢</span>Pain & Body</div>
+                <div class="care-card" onclick="filterProducts('Sleep')"><span class="icon">😴</span>Sleep</div>
+            </div>
+
+            <div class="section-title">🏷️ Trusted Brands</div>
+            <div class="brand-grid">
+                <span class="brand-chip">Reckitt</span>
+                <span class="brand-chip">AGP Pharma</span>
+                <span class="brand-chip">Ferozsons</span>
+                <span class="brand-chip">Hemani</span>
+                <span class="brand-chip">Mothercare</span>
+            </div>
+        </div>
+
+        <!-- Search Results (hidden by default) -->
+        <div class="search-results-container" id="searchResultsContainer">
+            <div class="section-title">🔎 Search Results</div>
+            <div class="product-grid" id="searchResultsGrid"></div>
+            <div style="text-align:center;margin:20px;">
+                <button class="btn btn-outline" onclick="clearSearch()">← Back to All Products</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <strong>MR.PHARMACY - Pakistan's Trusted Online Pharmacy</strong><br>
+        📍 Serving Karachi, Lahore, Islamabad, Rawalpindi & all Pakistan<br>
+        📞 <strong>0346-8663920</strong> | ✉️ <strong>danyalt624@gmail.com</strong> | 🌐 https://danyal887.github.io/Mr-pizza/<br>
+        <small>© 2026 MR.PHARMACY. All rights reserved.</small>
+    </div>
+
+    <!-- Order Modal -->
+    <div class="modal-overlay" id="orderModalOverlay">
+        <div class="modal">
+            <button class="close-btn" onclick="closeOrderModal()">✕</button>
+            <h3>📋 Place Your Order</h3>
+            <div id="orderFormContent">
+                <div class="form-group"><label>Product</label><input type="text" id="orderProductName" readonly style="background:#f1f3f4;font-weight:600;"></div>
+                <div class="form-group"><label>Price</label><input type="text" id="orderProductPrice" readonly style="background:#f1f3f4;font-weight:600;color:#0d904f;"></div>
+                <div class="form-group"><label>Full Name *</label><input type="text" id="orderName" placeholder="Enter your name" required></div>
+                <div class="form-group"><label>Phone Number *</label><input type="tel" id="orderPhone" placeholder="03XX-XXXXXXX" required></div>
+                <div class="form-group"><label>City *</label><input type="text" id="orderCity" placeholder="e.g., Karachi" required></div>
+                <div class="form-group"><label>District *</label><input type="text" id="orderDistrict" placeholder="e.g., Karachi East" required></div>
+                <div class="form-group"><label>Tehsil *</label><input type="text" id="orderTehsil" placeholder="e.g., Gulshan" required></div>
+                <button class="btn-submit" onclick="placeOrder()">✅ Place Order Now</button>
+            </div>
+            <div class="success-msg" id="orderSuccessMsg">
+                ✅ Order Placed Successfully!<br>
+                <small>We will contact you shortly at your provided number.</small>
+                <button class="btn btn-primary" onclick="closeOrderModal()">Continue Shopping</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Login -->
+    <div class="modal-overlay" id="adminLoginOverlay">
+        <div class="modal" style="max-width:380px;">
+            <button class="close-btn" onclick="closeAdminLogin()">✕</button>
+            <h3>🔐 Admin Login</h3>
+            <div class="form-group"><label>Email</label><input type="email" id="adminEmail" placeholder="https://danyal887.github.io/Mr-pizza/"></div>
+            <div class="form-group"><label>Password</label><input type="password" id="adminPassword" placeholder="Enter password"></div>
+            <button class="btn-submit" onclick="adminLogin()">Login</button>
+        </div>
+    </div>
+
+    <!-- Admin Panel -->
+    <div class="admin-overlay" id="adminPanelOverlay">
+        <div class="admin-panel">
+            <button class="close-btn" onclick="closeAdminPanel()">✕</button>
+            <h2>🛠️ Admin Dashboard</h2>
+            <div class="tab-btns">
+                <button class="tab-btn active" onclick="switchAdminTab('add')">➕ Add Medicine</button>
+                <button class="tab-btn" onclick="switchAdminTab('orders')">📋 Orders</button>
+                <button class="tab-btn" onclick="switchAdminTab('products')">📦 Products</button>
+            </div>
+            <div class="admin-section active" id="adminAddSection">
+                <div class="form-group"><label>Product Name *</label><input type="text" id="newProductName"></div>
+                <div class="form-group"><label>Price (Rs.) *</label><input type="number" id="newProductPrice"></div>
+                <div class="form-group"><label>Old Price (optional)</label><input type="number" id="newProductOldPrice"></div>
+                <div class="form-group"><label>Category</label><input type="text" id="newProductCategory"></div>
+                <div class="form-group"><label>Icon (emoji)</label><input type="text" id="newProductIcon" value="💊"></div>
+                <div class="form-group"><label>Section</label>
+                    <select id="newProductSection"><option value="topSelling">Top Selling</option><option value="deals">Deals</option><option value="featured">Featured</option></select>
+                </div>
+                <button class="btn-submit" onclick="addNewMedicine()">✅ Add Medicine</button>
+            </div>
+            <div class="admin-section" id="adminOrdersSection">
+                <h4>📋 All Orders</h4>
+                <div id="adminOrdersList"></div>
+                <button class="btn btn-outline" style="margin-top:12px;" onclick="clearAllOrders()">🗑️ Clear Orders</button>
+            </div>
+            <div class="admin-section" id="adminProductsSection">
+                <h4>📦 Manage Products</h4>
+                <div id="adminProductsList"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast"></div>
+
+    <script>
+        (function() {
+            emailjs.init("TEX3roGujJfCYtNVJ");
+        })();
+
+        const EMAILJS_SERVICE_ID = "service_w4rps2d";
+        const EMAILJS_TEMPLATE_ID = "template_72c8wv4";
+        const ADMIN_EMAIL = "danyalt624@gmail.com";
+        const ADMIN_PHONE = "03468663920";
+        const ADMIN_LOGIN_EMAIL = "thecenterofknowledge10@gmail.com";
+        const ADMIN_LOGIN_PASSWORD = "saimali123";
+
+        // Product data
+        let products = {
+            topSelling: [
+                { id: 1, name: 'Cac-1000 Plus Effervescent Orange', price: 330, oldPrice: null, icon: '🫧', category: 'Supplements' },
+                { id: 2, name: 'Danzen Ds Tablets 10mg', price: 456, oldPrice: 480, icon: '💊', category: 'Pain Relief' },
+                { id: 3, name: 'Prostryl Tablets 5mg', price: 441.60, oldPrice: 464.88, icon: '💊', category: 'Men Health' },
+                { id: 4, name: 'Amaryl Tablets 2mg', price: 721.80, oldPrice: 759.90, icon: '💉', category: 'Diabetes' },
+                { id: 5, name: 'Tamsolin Capsules 0.4mg', price: 736.30, oldPrice: 775.00, icon: '💊', category: 'Men Health' },
+                { id: 6, name: 'Motilium Tablets 10mg', price: 189.60, oldPrice: 199.67, icon: '💊', category: 'Digestive' },
+            ],
+            deals: [
+                { id: 7, name: 'Centrum Adults Multivitamin', price: 1530, oldPrice: 1800, icon: '💪', category: 'Supplements' },
+                { id: 8, name: 'Bonanza Gardenia 100ml', price: 2445, oldPrice: 4890, icon: '🌸', category: 'Fragrance' },
+                { id: 9, name: 'Bonanza Addiction 100ml', price: 3992, oldPrice: 4990, icon: '🌿', category: 'Fragrance' },
+                { id: 10, name: 'Pringles Salt & Vinegar 165g', price: 852, oldPrice: 1065, icon: '🍟', category: 'Foods' },
+                { id: 11, name: 'Bonanza Notorious Intense 100ml', price: 3174, oldPrice: 5290, icon: '🔥', category: 'Fragrance' },
+                { id: 12, name: 'Pringles Original 165g', price: 852, oldPrice: 1065, icon: '🍟', category: 'Foods' },
+            ],
+            featured: [
+                { id: 13, name: 'Cephalin Daily Facial Cleanser 591ml', price: 6973.68, oldPrice: null, icon: '🧴', category: 'Skin Care' },
+                { id: 14, name: 'The Ordinary AHA 30% + BHA 2%', price: 4200, oldPrice: null, icon: '✨', category: 'Skin Care' },
+                { id: 15, name: 'Bonanza Code Green 30ml', price: 1403, oldPrice: 1490, icon: '💚', category: 'Fragrance' },
+                { id: 16, name: 'Meiji Fu Stage 2 Milk', price: 5039.15, oldPrice: 5195, icon: '🍼', category: 'Baby Care' },
+                { id: 17, name: 'Skin Aqua Clear White SPF-50 25g', price: 2055.56, oldPrice: null, icon: '☀️', category: 'Skin Care' },
+            ]
+        };
+
+        function loadCustomProducts() {
+            const saved = localStorage.getItem('MR.PHARMACY_custom_products');
+            if (saved) {
+                const custom = JSON.parse(saved);
+                if (custom.topSelling) products.topSelling = [...products.topSelling, ...custom.topSelling];
+                if (custom.deals) products.deals = [...products.deals, ...custom.deals];
+                if (custom.featured) products.featured = [...products.featured, ...custom.featured];
+            }
+        }
+        loadCustomProducts();
+
+        function saveCustomProducts(customProducts) {
+            const existing = localStorage.getItem('MR.PHARMACY_custom_products');
+            let allCustom = existing ? JSON.parse(existing) : { topSelling: [], deals: [], featured: [] };
+            if (customProducts.topSelling) allCustom.topSelling.push(...customProducts.topSelling);
+            if (customProducts.deals) allCustom.deals.push(...customProducts.deals);
+            if (customProducts.featured) allCustom.featured.push(...customProducts.featured);
+            localStorage.setItem('MR.PHARMACY_custom_products', JSON.stringify(allCustom));
+        }
+
+        function renderProductCard(product) {
+            const discount = product.oldPrice ? Math.round((1 - product.price / product.oldPrice) * 100) : 0;
+            return `
+            <div class="product-card" onclick="openOrderModal('${product.name.replace(/'/g, "\\'")}', ${product.price})">
+              ${discount > 0 ? `<span class="badge">-${discount}%</span>` : ''}
+              <div class="icon">${product.icon || '💊'}</div>
+              <h4>${product.name}</h4>
+              <span class="price">Rs. ${product.price.toLocaleString('en-PK', {minimumFractionDigits:2})}</span>
+              ${product.oldPrice ? `<span class="old-price">Rs. ${product.oldPrice.toLocaleString('en-PK', {minimumFractionDigits:2})}</span>` : ''}
+              ${discount > 0 ? `<div class="discount">Save Rs. ${(product.oldPrice - product.price).toLocaleString('en-PK', {minimumFractionDigits:2})}</div>` : ''}
+            </div>`;
+        }
+
+        function renderAllProducts() {
+            document.getElementById('topSellingGrid').innerHTML = products.topSelling.map(renderProductCard).join('');
+            document.getElementById('dealsGrid').innerHTML = products.deals.map(renderProductCard).join('');
+            document.getElementById('featuredGrid').innerHTML = products.featured.map(renderProductCard).join('');
+        }
+        renderAllProducts();
+
+        function handleSearch() {
+            const query = document.getElementById('searchInput').value.toLowerCase().trim();
+            const normalSections = document.getElementById('normalSections');
+            const searchContainer = document.getElementById('searchResultsContainer');
+            const searchGrid = document.getElementById('searchResultsGrid');
+
+            if (!query) {
+                normalSections.style.display = 'block';
+                searchContainer.classList.remove('active');
+                return;
+            }
+
+            normalSections.style.display = 'none';
+            searchContainer.classList.add('active');
+            const allProducts = [...products.topSelling, ...products.deals, ...products.featured];
+            const filtered = allProducts.filter(p =>
+                p.name.toLowerCase().includes(query) ||
+                (p.category && p.category.toLowerCase().includes(query))
+            );
+            searchGrid.innerHTML = filtered.length ?
+                filtered.map(renderProductCard).join('') :
+                '<p style="text-align:center;padding:30px;color:#999;">No products found.</p>';
+        }
+
+        function clearSearch() {
+            document.getElementById('searchInput').value = '';
+            document.getElementById('normalSections').style.display = 'block';
+            document.getElementById('searchResultsContainer').classList.remove('active');
+        }
+
+        function filterProducts(category) {
+            document.getElementById('searchInput').value = category;
+            handleSearch();
+            window.scrollTo({ top: 200, behavior: 'smooth' });
+        }
+
+        function scrollToSection(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Order modal
+        function openOrderModal(productName, productPrice) {
+            document.getElementById('orderProductName').value = productName;
+            document.getElementById('orderProductPrice').value = 'Rs. ' + productPrice.toLocaleString('en-PK', { minimumFractionDigits: 2 });
+            document.getElementById('orderFormContent').style.display = 'block';
+            document.getElementById('orderSuccessMsg').classList.remove('show');
+            document.getElementById('orderModalOverlay').classList.add('active');
+            ['orderName', 'orderPhone', 'orderCity', 'orderDistrict', 'orderTehsil'].forEach(id => document.getElementById(id).value = '');
+        }
+
+        function closeOrderModal() {
+            document.getElementById('orderModalOverlay').classList.remove('active');
+        }
+
+        function placeOrder() {
+            const name = document.getElementById('orderName').value.trim();
+            const phone = document.getElementById('orderPhone').value.trim();
+            const city = document.getElementById('orderCity').value.trim();
+            const district = document.getElementById('orderDistrict').value.trim();
+            const tehsil = document.getElementById('orderTehsil').value.trim();
+            const productName = document.getElementById('orderProductName').value;
+            const productPrice = document.getElementById('orderProductPrice').value;
+
+            if (!name || !phone || !city || !district || !tehsil) {
+                showToast('⚠️ Please fill all fields', 'error');
+                return;
+            }
+            if (!/^03\d{9}$/.test(phone.replace(/\D/g, ''))) {
+                showToast('⚠️ Enter a valid phone (03XXXXXXXXX)', 'error');
+                return;
+            }
+
+            const orderData = {
+                productName, productPrice, customerName: name, phone, city, district, tehsil,
+                orderTime: new Date().toLocaleString('en-PK', { timeZone: 'Asia/Karachi' }),
+                orderId: 'DV-' + Date.now().toString(36).toUpperCase(),
+            };
+
+            saveOrder(orderData);
+            sendOrderEmail(orderData);
+
+            document.getElementById('orderFormContent').style.display = 'none';
+            document.getElementById('orderSuccessMsg').classList.add('show');
+            showToast('✅ Order placed! ID: ' + orderData.orderId, 'success');
+        }
+
+        function saveOrder(orderData) {
+            const orders = JSON.parse(localStorage.getItem('MR.PHARMACY_orders') || '[]');
+            orders.unshift(orderData);
+            localStorage.setItem('MR.PHARMACY_orders', JSON.stringify(orders));
+        }
+
+        function sendOrderEmail(orderData) {
+            const params = {
+                to_email: ADMIN_EMAIL,
+                to_name: 'MR.PHARMACY Admin',
+                from_name: orderData.customerName,
+                product_name: orderData.productName,
+                product_price: orderData.productPrice,
+                customer_name: orderData.customerName,
+                customer_phone: orderData.phone,
+                customer_city: orderData.city,
+                customer_district: orderData.district,
+                customer_tehsil: orderData.tehsil,
+                order_id: orderData.orderId,
+                order_time: orderData.orderTime,
+                admin_phone: ADMIN_PHONE,
+                message: `New order!\nProduct: ${orderData.productName}\nPrice: ${orderData.productPrice}\nCustomer: ${orderData.customerName}\nPhone: ${orderData.phone}\nCity: ${orderData.city}, ${orderData.district}, ${orderData.tehsil}`,
+            };
+            emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, params).catch(e => console.warn('EmailJS:', e));
+        }
+
+        function showToast(msg, type) {
+            const t = document.getElementById('toast');
+            t.textContent = msg;
+            t.className = 'toast ' + type + ' show';
+            setTimeout(() => t.classList.remove('show'), 3500);
+        }
+
+        // Admin
+        function openAdminLogin() {
+            document.getElementById('adminLoginOverlay').classList.add('active');
+        }
+
+        function closeAdminLogin() {
+            document.getElementById('adminLoginOverlay').classList.remove('active');
+        }
+
+        function adminLogin() {
+            if (document.getElementById('adminEmail').value.trim() === ADMIN_LOGIN_EMAIL &&
+                document.getElementById('adminPassword').value.trim() === ADMIN_LOGIN_PASSWORD) {
+                closeAdminLogin();
+                openAdminPanel();
+                showToast('✅ Welcome Admin', 'success');
+            } else {
+                showToast('❌ Invalid credentials', 'error');
+            }
+        }
+
+        function openAdminPanel() {
+            document.getElementById('adminPanelOverlay').classList.add('active');
+            switchAdminTab('add');
+            renderAdminOrders();
+            renderAdminProducts();
+        }
+
+        function closeAdminPanel() {
+            document.getElementById('adminPanelOverlay').classList.remove('active');
+        }
+
+        function switchAdminTab(tab) {
+            document.querySelectorAll('.admin-section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            if (tab === 'add') {
+                document.getElementById('adminAddSection').classList.add('active');
+                document.querySelector('.tab-btn:nth-child(1)').classList.add('active');
+            } else if (tab === 'orders') {
+                document.getElementById('adminOrdersSection').classList.add('active');
+                document.querySelector('.tab-btn:nth-child(2)').classList.add('active');
+                renderAdminOrders();
+            } else {
+                document.getElementById('adminProductsSection').classList.add('active');
+                document.querySelector('.tab-btn:nth-child(3)').classList.add('active');
+                renderAdminProducts();
+            }
+        }
+
+        function renderAdminOrders() {
+            const orders = JSON.parse(localStorage.getItem('MR.PHARMACY_orders') || '[]');
+            document.getElementById('adminOrdersList').innerHTML = orders.length ?
+                `<table><tr><th>ID</th><th>Product</th><th>Customer</th><th>Phone</th><th>City</th></tr>${orders.map(o => `<tr><td>${o.orderId}</td><td>${o.productName}</td><td>${o.customerName}</td><td>${o.phone}</td><td>${o.city}</td></tr>`).join('')}</table>` :
+                '<p>No orders yet.</p>';
+        }
+
+        function clearAllOrders() {
+            if (confirm('Delete all orders?')) { localStorage.removeItem('MR.PHARMACY_orders');
+                renderAdminOrders();
+                showToast('Orders cleared', 'success'); }
+        }
+
+        function renderAdminProducts() {
+            const all = [...products.topSelling, ...products.deals, ...products.featured];
+            document.getElementById('adminProductsList').innerHTML = all.length ? `<table><tr><th>Name</th><th>Price</th><th>Section</th><th>Action</th></tr>${all.map(p => {
+            let sec = products.topSelling.includes(p) ? 'topSelling' : products.deals.includes(p) ? 'deals' : 'featured';
+            return `<tr><td>${p.name}</td><td>Rs.${p.price}</td><td>${sec}</td><td><button onclick="deleteProduct(${p.id},'${sec}')">🗑️</button></td></tr>`}).join('')}</table>` : '<p>No products.</p>';
+        }
+
+        function deleteProduct(id, section) {
+            if (!confirm('Delete this product?')) return;
+            products[section] = products[section].filter(p => p.id !== id);
+            const saved = localStorage.getItem('MR.PHARMACY_custom_products');
+            if (saved) {
+                let custom = JSON.parse(saved);
+                if (custom[section]) custom[section] = custom[section].filter(p => p.id !== id);
+                localStorage.setItem('MR.PHARMACY_custom_products', JSON.stringify(custom));
+            }
+            renderAllProducts();
+            renderAdminProducts();
+            showToast('Product deleted', 'success');
+        }
+
+        function addNewMedicine() {
+            const name = document.getElementById('newProductName').value.trim();
+            const price = parseFloat(document.getElementById('newProductPrice').value);
+            const oldPrice = parseFloat(document.getElementById('newProductOldPrice').value) || null;
+            const category = document.getElementById('newProductCategory').value.trim();
+            const icon = document.getElementById('newProductIcon').value.trim() || '💊';
+            const section = document.getElementById('newProductSection').value;
+            if (!name || isNaN(price)) return showToast('Invalid input', 'error');
+            const newProd = { id: Date.now(), name, price, oldPrice, icon, category };
+            products[section].push(newProd);
+            const customSave = {}; customSave[section] = [newProd];
+            saveCustomProducts(customSave);
+            ['newProductName','newProductPrice','newProductOldPrice','newProductCategory'].forEach(id => document.getElementById(id).value = '');
+            renderAllProducts();
+            renderAdminProducts();
+            showToast('Medicine added', 'success');
+        }
+
+        // Close modals on outside click
+        document.getElementById('orderModalOverlay').addEventListener('click', function(e) { if (e.target === this) closeOrderModal(); });
+        document.getElementById('adminLoginOverlay').addEventListener('click', function(e) { if (e.target === this) closeAdminLogin(); });
+        document.getElementById('adminPanelOverlay').addEventListener('click', function(e) { if (e.target === this) closeAdminPanel(); });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') { closeOrderModal();
+                closeAdminLogin();
+                closeAdminPanel(); }
+            if (e.ctrlKey && e.shiftKey && e.key === 'A') { e.preventDefault();
+                openAdminLogin(); }
+        });
+    </script>
+</body>
+</html>
